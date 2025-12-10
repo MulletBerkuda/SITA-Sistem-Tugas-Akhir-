@@ -14,6 +14,7 @@ class JadwalBimbinganDosen extends Model
     protected $fillable = [
         'dosen_id',
         'hari',
+        'tanggal',
         'jam_mulai',
         'jam_selesai',
         'kuota'

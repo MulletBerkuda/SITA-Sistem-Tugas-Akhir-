@@ -57,3 +57,21 @@ Route::get('/admin/pengajuan-sidang/{id}', fn($id) => view('admin.pengajuan_sida
 
 Route::get('/admin/bimbingan', fn() => view('admin.bimbingan.index'));
 Route::get('/admin/bimbingan/{id}', fn($id) => view('admin.bimbingan.detail', compact('id')));
+
+
+// MAHASISWA BIMBINGAN (Blade)
+Route::get('/mahasiswa/bimbingan', fn() => view('mahasiswa.bimbingan.index'));
+Route::get('/mahasiswa/bimbingan/detail/{id}', fn($id) => view('mahasiswa.bimbingan.detail', compact('id')));
+Route::get('/mahasiswa/bimbingan/booking', fn() => view('mahasiswa.bimbingan.booking'));
+Route::get('/mahasiswa/pilih-pembimbing', fn() => view('mahasiswa.bimbingan.pilih_pembimbing'));
+
+// MAHASISWA PENGAJUAN SIDANG (Blade)
+// === PENGAJUAN SIDANG MAHASISWA (Blade Pages) ===
+Route::get('/mahasiswa/pengajuan-sidang', fn() => view('mahasiswa.pengajuan_sidang.index'));
+
+// Form create (HARUS DI ATAS route detail)
+Route::get('/mahasiswa/pengajuan-sidang/create', fn() => view('mahasiswa.pengajuan_sidang.create'));
+
+// Detail pengajuan
+Route::get('/mahasiswa/pengajuan-sidang/{id}', fn($id) => view('mahasiswa.pengajuan_sidang.detail', compact('id')));
+

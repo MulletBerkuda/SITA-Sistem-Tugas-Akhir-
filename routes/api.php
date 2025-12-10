@@ -4,13 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AdminDashboardController;
-use App\Http\Controllers\Api\Mahasiswa\BimbinganController as MahasiswaBimbinganController;
 use App\Http\Controllers\Api\Admin\AdminBimbinganController;
 use App\Http\Controllers\Api\Admin\AdminUserController;
 use App\Http\Controllers\Api\Admin\SidangController;
 use App\Http\Controllers\Api\Admin\AdminPengajuanSidangController;
 use App\Http\Controllers\Api\Admin\AdminBookingBimbinganController;
 use App\Http\Controllers\Api\Mahasiswa\MahasiswaDashboardController;
+use App\Http\Controllers\Api\Mahasiswa\BookingController;
+use App\Http\Controllers\Api\Mahasiswa\MahasiswaBimbinganController;
+use App\Http\Controllers\Api\Mahasiswa\PengajuanSidangController;
+use App\Http\Controllers\Api\Mahasiswa\PengajuanSidangMahasiswaController;
 
 // LOGIN API
 Route::post('/login', [AuthController::class, 'login']);
@@ -65,5 +68,20 @@ Route::put('/pengajuan-sidang/{id}/tolak', [AdminPengajuanSidangController::clas
 
 //mahasiswa
 Route::middleware(['auth:sanctum', 'role:mahasiswa'])->prefix('mahasiswa')->group(function () {
+
     Route::get('/dashboard', [MahasiswaDashboardController::class, 'index']);
+    Route::get('/bimbingan', [MahasiswaBimbinganController::class, 'index']);
+
+    Route::get('/slot-bimbingan', [BookingController::class, 'slot']);
+    Route::post('/booking-bimbingan', [BookingController::class, 'booking']);
+
+    // Dosen
+    Route::get('/dosen', [MahasiswaBimbinganController::class, 'listDosen']);
+    Route::put('/set-pembimbing', [MahasiswaBimbinganController::class, 'setPembimbing']);
+
+    // === PENGAJUAN SIDANG ===
+    Route::get('/pengajuan-sidang', [PengajuanSidangMahasiswaController::class, 'index']);
+    Route::get('/pengajuan-sidang/create', [PengajuanSidangMahasiswaController::class, 'create']);
+    Route::get('/pengajuan-sidang/{id}', [PengajuanSidangMahasiswaController::class, 'show']);
+    Route::post('/pengajuan-sidang', [PengajuanSidangMahasiswaController::class, 'store']);
 });

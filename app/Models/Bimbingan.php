@@ -29,4 +29,10 @@ protected $fillable = [
     {
         return $this->belongsTo(User::class, 'dosen_id');
     }
+
+    public function jadwal()
+{
+    return $this->belongsTo(JadwalBimbinganDosen::class, 'jadwal_id');
+}
+
 }

@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const sidebar = document.getElementById("sidebar-menu");
 
+        // ROLE ADMIN
         if (user.role === "admin") {
             sidebar.innerHTML = `
                 <li><a href="/admin/dashboard">Dashboard</a></li>
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
         }
 
+        // ROLE DOSEN
         if (user.role === "dosen") {
             sidebar.innerHTML = `
                 <li><a href="/dosen/dashboard">Dashboard</a></li>
@@ -69,11 +71,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
         }
 
+        // ROLE MAHASISWA (VERSI LENGKAP)
         if (user.role === "mahasiswa") {
             sidebar.innerHTML = `
                 <li><a href="/mahasiswa/dashboard">Dashboard</a></li>
+                <li><a href="/mahasiswa/pilih-pembimbing">Pilih Pembimbing</a></li>
                 <li><a href="/mahasiswa/bimbingan">Bimbingan</a></li>
-                <li><a href="/mahasiswa/sidang">Sidang</a></li>
+                <li><a href="/mahasiswa/bimbingan/booking">Booking Bimbingan</a></li>
+                <li><a href="/mahasiswa/pengajuan-sidang">Sidang</a></li>
             `;
         }
 
@@ -91,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 </script>
 
-@yield('scripts') 
+@yield('scripts')
 
 </body>
 </html>
