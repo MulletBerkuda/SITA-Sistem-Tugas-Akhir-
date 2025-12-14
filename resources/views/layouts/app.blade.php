@@ -62,14 +62,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
         }
 
-        // ROLE DOSEN
-        if (user.role === "dosen") {
-            sidebar.innerHTML = `
-                <li><a href="/dosen/dashboard">Dashboard</a></li>
-                <li><a href="/dosen/bimbingan">Bimbingan</a></li>
-                <li><a href="/dosen/sidang">Sidang</a></li>
-            `;
-        }
+       // ROLE DOSEN
+if (user.role === "dosen") {
+    sidebar.innerHTML = `
+        <li><a href="/dosen/dashboard">Dashboard</a></li>
+
+    
+        <li><a href="/dosen/booking-bimbingan">Booking Masuk</a></li>
+        <li><a href="/dosen/bimbingan">Bimbingan Aktif</a></li>
+<li><a href="/dosen/jadwal-bimbingan">Jadwal Bimbingan</a></li>
+
+        <li><a href="/dosen/sidang">Sidang</a></li>
+    `;
+}
 
         // ROLE MAHASISWA (VERSI LENGKAP)
         if (user.role === "mahasiswa") {

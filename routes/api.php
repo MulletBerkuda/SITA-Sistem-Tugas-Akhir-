@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\Mahasiswa\BookingController;
 use App\Http\Controllers\Api\Mahasiswa\MahasiswaBimbinganController;
 use App\Http\Controllers\Api\Mahasiswa\PengajuanSidangController;
 use App\Http\Controllers\Api\Mahasiswa\PengajuanSidangMahasiswaController;
+use App\Http\Controllers\Api\Dosen\DashboardController; 
+use App\Http\Controllers\Api\Dosen\BookingBimbinganController;
+use App\Http\Controllers\Api\Dosen\JadwalBimbinganController;
 
 // LOGIN API
 Route::post('/login', [AuthController::class, 'login']);
@@ -85,3 +88,20 @@ Route::middleware(['auth:sanctum', 'role:mahasiswa'])->prefix('mahasiswa')->grou
     Route::get('/pengajuan-sidang/{id}', [PengajuanSidangMahasiswaController::class, 'show']);
     Route::post('/pengajuan-sidang', [PengajuanSidangMahasiswaController::class, 'store']);
 });
+
+Route::middleware(['auth:sanctum', 'role:dosen'])->prefix('dosen')->group(function () {
+
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+
+        // BOOKING BIMBINGAN
+        Route::get('/booking-bimbingan', [BookingBimbinganController::class, 'index']);
+        Route::get('/booking-bimbingan/{id}', [BookingBimbinganController::class, 'show']);
+        Route::post('/booking-bimbingan/{id}/acc', [BookingBimbinganController::class, 'acc']);
+        Route::post('/booking-bimbingan/{id}/tolak', [BookingBimbinganController::class, 'tolak']);
+        Route::post('/booking-bimbingan/{id}/reschedule', [BookingBimbinganController::class, 'reschedule']);
+
+
+          Route::get('/jadwal-bimbingan', [JadwalBimbinganController::class, 'index']);
+        Route::post('/jadwal-bimbingan', [JadwalBimbinganController::class, 'store']);
+        Route::delete('/jadwal-bimbingan/{id}', [JadwalBimbinganController::class, 'destroy']);
+    });

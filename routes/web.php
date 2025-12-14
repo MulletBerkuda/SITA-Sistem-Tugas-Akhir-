@@ -75,3 +75,12 @@ Route::get('/mahasiswa/pengajuan-sidang/create', fn() => view('mahasiswa.pengaju
 // Detail pengajuan
 Route::get('/mahasiswa/pengajuan-sidang/{id}', fn($id) => view('mahasiswa.pengajuan_sidang.detail', compact('id')));
 
+Route::get('/dosen/booking-bimbingan', function () {return view('dosen.booking.index');});
+
+Route::get('/dosen/booking-bimbingan/{id}', function () {return view('dosen.booking.detail');});
+Route::get('/dosen/jadwal-bimbingan', function () {
+    return view('dosen.jadwal.index');
+});
+ Route::get('/dosen/jadwal-bimbingan/create', function () {
+        return view('dosen.jadwal.create');
+    });
