@@ -36,7 +36,7 @@ axios.get('/api/admin/bimbingan', {
                 <td>${b.mahasiswa?.name ?? '-'}</td>
                 <td>${b.dosen?.name ?? '-'}</td>
                 <td>${b.tanggal}</td>
-                <td>${b.waktu_mulai ?? '-'} - ${b.waktu_selesai ?? '-'}</td>
+                <td>${b.jadwal?.jam_mulai ?? '-'} - ${b.jadwal?.jam_selesai ?? '-'}</td>
                 <td>${b.status}</td>
                 <td><a href="/admin/bimbingan/${b.id}">Detail</a></td>
             </tr>

@@ -44,11 +44,14 @@ class JadwalBimbinganController extends Controller
         }
 
         // Optional: cek apakah sudah ada booking
-        if ($jadwal->booking()->count() > 0) {
-            return response()->json([
-                'message' => 'Jadwal sudah dibooking, tidak bisa dihapus'
-            ], 422);
-        }
+        if ($jadwal->booking()
+    ->whereIn('status', ['menunggu', 'disetujui', 'dijadwal_ulang'])
+    ->count() > 0) 
+{
+    return response()->json([
+        'message' => 'Masih ada booking aktif, jadwal tidak bisa dihapus'
+    ], 422);
+}
 
         $jadwal->delete();
 
